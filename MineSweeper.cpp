@@ -2,12 +2,12 @@
 #include<conio.h>
 using namespace std;
 
-#define BEGINNER 0
-#define INTERMEDIATE 1
-#define ADVANCED 2
-#define MAXSIDE 25
-#define MAXMINES 99
-#define MOVESIZE 526 
+#define beginner 0
+#define intermidiate 1
+#define advanced 2
+#define maxside 25
+#define maximumMines 99
+#define movesize 526 
 
 int SIDE ; 
 int MINES ; 
@@ -18,7 +18,7 @@ bool isValid(int row, int col)
 		(col >= 0) && (col < SIDE);
 }
 
-bool isMine (int row, int col, char board[][MAXSIDE])
+bool isMine (int row, int col, char board[][maxside])
 {
 	if (board[row][col] == '*')
 		return (true);
@@ -32,7 +32,7 @@ void makeMove(int *x, int *y)
 	scanf("%d %d", x, y);
 	return;
 }
-void printBoard(char myBoard[][MAXSIDE])
+void printBoard(char myBoard[][maxside])
 {
 	int i, j;
 
@@ -55,7 +55,7 @@ void printBoard(char myBoard[][MAXSIDE])
 }
 
 int countAdjacentMines(int row, int col, int mines[][2],
-					char realBoard[][MAXSIDE])
+					char realBoard[][maxside])
 {
 
 	int i;
@@ -111,7 +111,7 @@ int countAdjacentMines(int row, int col, int mines[][2],
 	return (count);
 }
 
-bool playMinesweeperUtil(char myBoard[][MAXSIDE], char realBoard[][MAXSIDE],
+bool playMinesweeperUtil(char myBoard[][maxside], char realBoard[][maxside],
 			int mines[][2], int row, int col, int *movesLeft)
 {
 
@@ -194,9 +194,9 @@ bool playMinesweeperUtil(char myBoard[][MAXSIDE], char realBoard[][MAXSIDE],
 	}
 }
 
-void placeMines(int mines[][2], char realBoard[][MAXSIDE])
+void placeMines(int mines[][2], char realBoard[][maxside])
 {
-	bool mark[MAXSIDE*MAXSIDE];
+	bool mark[maxside*maxside];
 
 	memset (mark, false, sizeof (mark));
 
@@ -222,7 +222,7 @@ void placeMines(int mines[][2], char realBoard[][MAXSIDE])
 	return;
 }
 
-void initialise(char realBoard[][MAXSIDE], char myBoard[][MAXSIDE])
+void initialise(char realBoard[][maxside], char myBoard[][maxside])
 {
 	srand(time (NULL));
 	for (int i=0; i<SIDE; i++)
@@ -236,14 +236,14 @@ void initialise(char realBoard[][MAXSIDE], char myBoard[][MAXSIDE])
 	return;
 }
 
-void cheatMinesweeper (char realBoard[][MAXSIDE])
+void cheatMinesweeper (char realBoard[][maxside])
 {
 	printf ("The mines locations are-\n");
 	printBoard (realBoard);
 	return;
 }
 
-void replaceMine (int row, int col, char board[][MAXSIDE])
+void replaceMine (int row, int col, char board[][maxside])
 {
 	for (int i=0; i<SIDE; i++)
 	{
@@ -264,10 +264,10 @@ void playMinesweeper ()
 {
 	bool gameOver = false;
 
-	char realBoard[MAXSIDE][MAXSIDE], myBoard[MAXSIDE][MAXSIDE];
+	char realBoard[maxside][maxside], myBoard[maxside][maxside];
 
 	int movesLeft = SIDE * SIDE - MINES, x, y;
-	int mines[MAXMINES][2]; 
+	int mines[maximumMines][2]; 
 
 	initialise (realBoard, myBoard);
 
@@ -305,25 +305,25 @@ void chooseDifficultyLevel ()
 	int level;
 
 	printf ("Enter the Difficulty Level\n");
-	printf ("Press 0 for BEGINNER (9 * 9 Cells and 10 Mines)\n");
-	printf ("Press 1 for INTERMEDIATE (16 * 16 Cells and 40 Mines)\n");
-	printf ("Press 2 for ADVANCED (24 * 24 Cells and 99 Mines)\n");
+	printf ("Press 0 for beginner (9 * 9 Cells and 10 Mines)\n");
+	printf ("Press 1 for intermidiate (16 * 16 Cells and 40 Mines)\n");
+	printf ("Press 2 for advanced (24 * 24 Cells and 99 Mines)\n");
 
 	scanf ("%d", &level);
 
-	if (level == BEGINNER)
+	if (level == beginner)
 	{
 		SIDE = 9;
 		MINES = 10;
 	}
 
-	if (level == INTERMEDIATE)
+	if (level == intermidiate)
 	{
 		SIDE = 16;
 		MINES = 40;
 	}
 
-	if (level == ADVANCED)
+	if (level == advanced)
 	{
 		SIDE = 24;
 		MINES = 99;
